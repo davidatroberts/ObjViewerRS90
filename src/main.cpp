@@ -5,6 +5,7 @@
 #include <SDL/SDL_ttf.h>
 
 #include "Context.h"
+#include "ObjViewerState.h"
 #include "PixelBuffer.h"
 #include "State.h"
 #include "Text.h"
@@ -75,7 +76,7 @@ int main(int arc, char *argv[])
     Text text(screen, font);
 
     auto context = createContext(createPixelBuffer(screen), SCREEN_WIDTH, SCREEN_HEIGHT, text);
-    // context->setState(createFireState(context));
+    context->setState(createObjViewerState(context));
 
     float delta = 0.0f;
     uint32_t old_time, current_time;
