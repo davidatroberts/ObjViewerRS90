@@ -2,6 +2,7 @@
 #define CONTEXT_H
 
 #include <memory>
+#include <string>
 
 struct PixelBuffer;
 struct State;
@@ -21,6 +22,7 @@ struct Context
     virtual int getScreenHeight() const = 0;
     virtual void displayFPS(bool display) = 0;
     virtual bool displayingFPS() const = 0;
+    virtual void loadObjFile(const std::string &obj_file) = 0;
 };
 
 std::shared_ptr<Context> createContext(

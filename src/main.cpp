@@ -58,8 +58,17 @@ void processEvents(const std::shared_ptr<State> &state)
     }
 }
 
-int main(int arc, char *argv[])
+int main(int argc, char *argv[])
 {
+    std::string obj_file;
+    if (argc < 2)
+    {
+        std::cout << "No obj file given\n";
+        return 1;
+    }
+    else
+        obj_file = argv[1];
+
     auto screen = initSDL(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP);
     if (!screen)
     {
@@ -76,7 +85,7 @@ int main(int arc, char *argv[])
     Text text(screen, font);
 
     auto context = createContext(createPixelBuffer(screen), SCREEN_WIDTH, SCREEN_HEIGHT, text);
-    context->setState(createObjViewerState(context));
+    context->setState(createObjViewerState(context, obj_file));
 
     float delta = 0.0f;
     uint32_t old_time, current_time;

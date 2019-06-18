@@ -114,6 +114,11 @@ public:
         return display_fps_;
     }
 
+    void loadObjFile(const std::string &obj_file) override
+    {
+
+    }
+
 private:
     bool quit_;
     std::shared_ptr<PixelBuffer> pixel_buffer_;
