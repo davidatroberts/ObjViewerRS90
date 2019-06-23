@@ -6,6 +6,7 @@
 #include "State.h"
 #include "Timer.h"
 #include "Text.h"
+#include "ObjParser.h"
 
 namespace
 {
@@ -114,9 +115,9 @@ public:
         return display_fps_;
     }
 
-    void loadObjFile(const std::string &obj_file) override
+    geometry::Model loadObjFile(const std::string &obj_file) override
     {
-
+        return obj_parser::parseObjectFile(obj_file);
     }
 
 private:

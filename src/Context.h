@@ -4,6 +4,8 @@
 #include <memory>
 #include <string>
 
+#include "Model.h"
+
 struct PixelBuffer;
 struct State;
 class Text;
@@ -22,7 +24,7 @@ struct Context
     virtual int getScreenHeight() const = 0;
     virtual void displayFPS(bool display) = 0;
     virtual bool displayingFPS() const = 0;
-    virtual void loadObjFile(const std::string &obj_file) = 0;
+    virtual geometry::Model loadObjFile(const std::string &obj_file) = 0;
 };
 
 std::shared_ptr<Context> createContext(

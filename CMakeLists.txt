@@ -13,6 +13,7 @@ add_executable(objviewer
     src/PixelBuffer.cpp
     src/Text.cpp
     src/Timer.cpp
+    src/ObjParser.cpp
 )
 
 target_link_libraries(objviewer ${SDL_LIBRARY})
@@ -32,3 +33,24 @@ add_custom_target(
     DEPENDS objviewer
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
+# unit test setup
+include(CTest)
+enable_testing()
+add_library(Catch2::Catch IMPORTED INTERFACE)
+set(CATCH_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/extern/catch)
+set_property(TARGET Catch2::Catch PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${CATCH_INCLUDE_DIR}")
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+add_executable(unit_tests 
+    tests/test_main.cpp
+    tests/test_ObjParser.cpp
+    src/ObjParser.cpp
+)
+
+target_link_libraries(unit_tests
+    Catch2::Catch
+)
+
+add_test(test_all unit_tests)
