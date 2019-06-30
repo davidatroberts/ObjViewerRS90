@@ -1,5 +1,5 @@
 include(CTest)
-enable_testing()
+
 add_library(Catch2::Catch IMPORTED INTERFACE)
 set(CATCH_INCLUDE_DIR ${objviewer_SOURCE_DIR}/extern/catch)
 set_property(TARGET Catch2::Catch PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${CATCH_INCLUDE_DIR}")
