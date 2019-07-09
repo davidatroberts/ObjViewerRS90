@@ -12,7 +12,9 @@ include_directories(
 add_executable(unit_tests 
     src/test_main.cpp
     src/test_ObjParser.cpp
+    src/test_Vector3.cpp
     ${objviewer_SOURCE_DIR}/src/ObjParser.cpp
+    ${objviewer_SOURCE_DIR}/src/Vector3.cpp
 )
 
 target_link_libraries(unit_tests

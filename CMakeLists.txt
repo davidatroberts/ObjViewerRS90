@@ -7,13 +7,14 @@ find_package(SDL_ttf REQUIRED)
 find_package(ZLIB REQUIRED)
 
 add_executable(objviewer 
-    src/Context.cpp
     src/main.cpp
+    src/Context.cpp
+    src/ObjParser.cpp
     src/ObjViewerState.cpp
     src/PixelBuffer.cpp
     src/Text.cpp
     src/Timer.cpp
-    src/ObjParser.cpp
+    src/Vector3.cpp
 )
 
 target_link_libraries(objviewer ${SDL_LIBRARY})
