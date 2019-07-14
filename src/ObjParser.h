@@ -9,7 +9,7 @@
 namespace obj_parser
 {
     geometry::Model parseObjectFile(const std::string &file_name);
-    geometry::Model parserObjectStream(std::ifstream &file_stream);
+    geometry::Model parserObjectStream(std::istream &stream);
 }
 
 #endif

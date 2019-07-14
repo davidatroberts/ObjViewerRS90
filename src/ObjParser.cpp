@@ -23,8 +23,13 @@ namespace
         if (key == "#")
             return;
 
-        if (key == "v" && results.size()==4)
-            model.vectors.push_back(geometry::createVector(results[1], results[2], results[3]));
+        if (key == "v")
+        {
+            if (results.size()==4)
+                model.vectors.push_back(geometry::createVector(results[1], results[2], results[3]));
+            else if (results.size() == 5)
+                model.vectors.push_back(geometry::createVector(results[1], results[2], results[3], results[4]));
+        }
 
         std::cout << "Unsupport obj command\n";
     }
@@ -38,12 +43,12 @@ namespace obj_parser
         return parserObjectStream(file_stream);
     }
 
-    geometry::Model parserObjectStream(std::ifstream &file_stream)
+    geometry::Model parserObjectStream(std::istream &stream)
     {
         geometry::Model model;
 
         std::string line;
-        while (std::getline(file_stream, line))
+        while (std::getline(stream, line))
         {
             processLine(line, model);
         }
