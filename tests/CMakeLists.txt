@@ -15,10 +15,13 @@ add_executable(unit_tests
     src/test_Vector3.cpp
     ${objviewer_SOURCE_DIR}/src/ObjParser.cpp
     ${objviewer_SOURCE_DIR}/src/Vector3.cpp
+    ${objviewer_SOURCE_DIR}/src/Face.cpp
 )
 
 target_link_libraries(unit_tests
     Catch2::Catch
 )
 
-add_test(test_all unit_tests)
+add_test(comments unit_tests comments)
+add_test(vector unit_tests vector)
+add_test(faces unit_tests faces)

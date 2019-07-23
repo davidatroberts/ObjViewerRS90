@@ -15,6 +15,7 @@ add_executable(objviewer
     src/Text.cpp
     src/Timer.cpp
     src/Vector3.cpp
+    src/Face.cpp
 )
 
 target_link_libraries(objviewer ${SDL_LIBRARY})

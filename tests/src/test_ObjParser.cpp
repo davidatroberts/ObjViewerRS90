@@ -4,6 +4,8 @@
 #include <string>
 
 #include "ObjParser.h"
+#include "Vector3.h"
+#include "Face.h"
 
 TEST_CASE("ObjParser can parse vector", "[vector]")
 {
@@ -72,5 +74,21 @@ TEST_CASE("ObjParser can parse comments", "[comments]")
         std::istringstream iss(input_str);
         const auto model = obj_parser::parserObjectStream(iss);
         REQUIRE(model.vectors.empty());
+    }
+}
+
+TEST_CASE("ObjParser can parse faces", "[faces]")
+{
+    SECTION("can read a face with 3 vertices")
+    {
+        std::string input_str("f 1 2 3");
+        std::istringstream iss(input_str);
+        const auto model = obj_parser::parserObjectStream(iss);
+        REQUIRE(model.faces.size() == 1);
+
+        const auto face = model.faces.front();
+        std::vector<size_t> expected = {1, 2, 3};
+        
+        REQUIRE(face.vertex_indices == expected);
     }
 }
