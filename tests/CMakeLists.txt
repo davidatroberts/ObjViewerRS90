@@ -22,6 +22,6 @@ target_link_libraries(unit_tests
     Catch2::Catch
 )
 
-add_test(comments unit_tests comments)
-add_test(vector unit_tests vector)
-add_test(faces unit_tests faces)
+add_test(parse_comments unit_tests ObjParserComments)
+add_test(parse_vector unit_tests ObjParserVector)
+add_test(parse_faces unit_tests ObjParserFaces)
