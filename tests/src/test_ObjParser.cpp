@@ -86,9 +86,9 @@ TEST_CASE("ObjParserFaces", "[faces]")
         const auto model = obj_parser::parserObjectStream(iss);
         REQUIRE(model.faces.size() == 1);
 
-        // const auto face = model.faces.front();
-        // std::vector<size_t> expected = {0, 1, 2};
+        const auto face = model.faces.front();
+        std::vector<size_t> expected = {0, 1, 2};
         
-        // REQUIRE(face.vertex_indices == expected);
+        REQUIRE(face.vertex_indices == expected);
     }
 }
