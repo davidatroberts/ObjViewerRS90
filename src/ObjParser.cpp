@@ -4,7 +4,9 @@
 #include <iterator>
 #include <sstream>
 
+#include "Face.h"
 #include "Vector3.h"
+#include "VertexTexture.h"
 
 namespace 
 {
@@ -34,6 +36,14 @@ namespace
                 model.vectors.push_back(geometry::createVector(results[0], results[1], results[2]));
             else if (results.size() == 4)
                 model.vectors.push_back(geometry::createVector(results[0], results[1], results[2], results[3]));
+        }
+
+        if (key =="vt")
+        {
+            if (results.size() == 1)
+                model.vertex_textures.push_back(geometry::createVertexTexture(results[0]));
+            // else if (results.size() == 2)
+            // else if (results.size() == 3)
         }
 
         if (key == "f")

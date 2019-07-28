@@ -15,6 +15,7 @@ add_executable(unit_tests
     src/test_Vector3.cpp
     ${objviewer_SOURCE_DIR}/src/ObjParser.cpp
     ${objviewer_SOURCE_DIR}/src/Vector3.cpp
+    ${objviewer_SOURCE_DIR}/src/VertexTexture.cpp
     ${objviewer_SOURCE_DIR}/src/Face.cpp
 )
 
@@ -24,4 +25,5 @@ target_link_libraries(unit_tests
 
 add_test(parse_comments unit_tests ObjParserComments)
 add_test(parse_vector unit_tests ObjParserVector)
+add_test(parse_texture unit_tests ObjParserVertexTexture)
 add_test(parse_faces unit_tests ObjParserFaces)

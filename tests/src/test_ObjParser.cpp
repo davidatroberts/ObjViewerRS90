@@ -5,6 +5,7 @@
 
 #include "ObjParser.h"
 #include "Vector3.h"
+#include "VertexTexture.h"
 #include "Face.h"
 
 TEST_CASE("ObjParserVector", "[vector]")
@@ -66,6 +67,41 @@ TEST_CASE("ObjParserVector", "[vector]")
     }
 }
 
+TEST_CASE("ObjParserVertexTexture", "[textures]")
+{
+    SECTION("can read a 1D vertex texture")
+    {
+        std::string input_str("vt 1.5\n");
+        std::istringstream iss(input_str);
+        const auto model = obj_parser::parserObjectStream(iss);
+
+        INFO("Vertext texture size: " << model.vertex_textures.size());
+        REQUIRE(model.vertex_textures.size() == 1);
+
+        const auto vt = model.vertex_textures.front();
+        INFO("VT u: " << vt.u);
+        CHECK(vt.u == Approx(1.5));
+    }
+
+    // SECTION("can read a 2D vertex texutre")
+    // {
+    //     std::string input_str("vt 1.5 2.2\n");
+    //     std::istringstream iss(input_str);
+    //     const auto model = obj_parser::parserObjectStream(iss);
+
+    //     CHECK(false);
+    // }
+
+    // SECTION("can read a 3D vertex texture")
+    // {
+    //     std::string input_str("vt 1.5 2.2 3.4\n");
+    //     std::istringstream iss(input_str);
+    //     const auto model = obj_parser::parserObjectStream(iss);
+
+    //     CHECK(false);
+    // }
+}
+
 TEST_CASE("ObjParserComments", "[comments]")
 {
     SECTION("can read and ignore comments")
@@ -90,5 +126,10 @@ TEST_CASE("ObjParserFaces", "[faces]")
         std::vector<size_t> expected = {0, 1, 2};
         
         REQUIRE(face.vertex_indices == expected);
+    }
+
+    SECTION("can read a face with 3 vertices and 3 vertex texture coordinates")
+    {
+
     }
 }
