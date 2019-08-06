@@ -31,12 +31,7 @@ namespace
             return;
 
         if (key == "v")
-        {
-            if (results.size()==3)
-                model.vectors.push_back(geometry::createVector(results[0], results[1], results[2]));
-            else if (results.size() == 4)
-                model.vectors.push_back(geometry::createVector(results[0], results[1], results[2], results[3]));
-        }
+            model.vectors.push_back(geometry::createVector(results));
 
         if (key =="vt")
             model.vertex_textures.push_back(geometry::createVertexTexture(results));

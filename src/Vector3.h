@@ -2,6 +2,7 @@
 #define VECTOR3_H
 
 #include <string>
+#include <vector>
 
 namespace geometry
 {
@@ -15,9 +16,7 @@ namespace geometry
         float x, y, z, w;
     };
 
-    Vector3 createVector(
-        const std::string &x_str, const std::string &y_str, const std::string &z_str, const std::string &w_str=""
-    );
+    Vector3 createVector(const std::vector<std::string> &string_vals);
 }
 
 #endif
