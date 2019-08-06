@@ -75,31 +75,39 @@ TEST_CASE("ObjParserVertexTexture", "[textures]")
         std::istringstream iss(input_str);
         const auto model = obj_parser::parserObjectStream(iss);
 
-        INFO("Vertext texture size: " << model.vertex_textures.size());
         REQUIRE(model.vertex_textures.size() == 1);
 
         const auto vt = model.vertex_textures.front();
-        INFO("VT u: " << vt.u);
         CHECK(vt.u == Approx(1.5));
     }
 
-    // SECTION("can read a 2D vertex texutre")
-    // {
-    //     std::string input_str("vt 1.5 2.2\n");
-    //     std::istringstream iss(input_str);
-    //     const auto model = obj_parser::parserObjectStream(iss);
+    SECTION("can read a 2D vertex texutre")
+    {
+        std::string input_str("vt 1.5 2.2\n");
+        std::istringstream iss(input_str);
+        const auto model = obj_parser::parserObjectStream(iss);
 
-    //     CHECK(false);
-    // }
+        REQUIRE(model.vertex_textures.size() == 1);
 
-    // SECTION("can read a 3D vertex texture")
-    // {
-    //     std::string input_str("vt 1.5 2.2 3.4\n");
-    //     std::istringstream iss(input_str);
-    //     const auto model = obj_parser::parserObjectStream(iss);
+        const auto vt = model.vertex_textures.front();
+        CHECK(vt.u == Approx(1.5));
+        CHECK(vt.v == Approx(2.2));
+    }
 
-    //     CHECK(false);
-    // }
+    SECTION("can read a 3D vertex texture")
+    {
+        std::string input_str("vt 1.5 2.2 3.3\n");
+        std::istringstream iss(input_str);
+        const auto model = obj_parser::parserObjectStream(iss);
+
+        REQUIRE(model.vertex_textures.size() == 1);
+
+        const auto vt = model.vertex_textures.front();
+        CHECK(vt.u == Approx(1.5));
+        CHECK(vt.v == Approx(2.2));
+        CHECK(vt.w == Approx(3.3));
+
+    }
 }
 
 TEST_CASE("ObjParserComments", "[comments]")

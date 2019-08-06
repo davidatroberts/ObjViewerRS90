@@ -39,12 +39,7 @@ namespace
         }
 
         if (key =="vt")
-        {
-            if (results.size() == 1)
-                model.vertex_textures.push_back(geometry::createVertexTexture(results[0]));
-            // else if (results.size() == 2)
-            // else if (results.size() == 3)
-        }
+            model.vertex_textures.push_back(geometry::createVertexTexture(results));
 
         if (key == "f")
         {

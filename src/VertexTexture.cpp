@@ -5,14 +5,17 @@
 namespace geometry
 {
     VertexTexture createVertexTexture(
-        const std::string &u_str, const std::string &v_str, const std::string &w_str)
+        const std::vector<std::string> &string_vals)
     {
-        if (v_str.empty())
-            return VertexTexture(std::stof(u_str));
+        if (string_vals.size() == 1)
+            return VertexTexture(std::stof(string_vals[0]));
+        
+        if (string_vals.size() == 2)
+            return VertexTexture(std::stof(string_vals[0]), std::stof(string_vals[1]));
 
-        if (w_str.empty())
-            return VertexTexture(std::stof(u_str), std::stof(v_str));
+        if (string_vals.size() == 3)
+            return VertexTexture(std::stof(string_vals[0]), std::stof(string_vals[1]), std::stof(string_vals[2]));
 
-        return VertexTexture(std::stof(u_str), std::stof(v_str), std::stof(w_str));
+        return VertexTexture();
     }
 }
