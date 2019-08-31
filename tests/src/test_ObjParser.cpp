@@ -138,6 +138,17 @@ TEST_CASE("ObjParserFaces", "[faces]")
 
     SECTION("can read a face with 3 vertices and 3 vertex texture coordinates")
     {
+        std::string input_str("f 1/3 2/2 3/1");
+        std::istringstream iss(input_str);
+        const auto model = obj_parser::parserObjectStream(iss);
+        REQUIRE(model.faces.size() == 1);
 
+        const auto face = model.faces.front();
+
+        std::vector<size_t> expected_vertices = {0, 1, 2};
+        REQUIRE(face.vertex_indices == expected_vertices);
+
+        std::vector<size_t> expected_vertex_textures = {2, 1, 0};
+        REQUIRE(face.vertex_texture_indices == expected_vertex_textures);
     }
 }

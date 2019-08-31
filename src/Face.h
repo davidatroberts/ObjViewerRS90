@@ -9,10 +9,11 @@ namespace geometry
     struct Face
     {
         std::vector<size_t> vertex_indices;
+        std::vector<size_t> vertex_texture_indices;
     };
     
 
-    Face createFace(const std::vector<std::string> &vector_string_values);
+    Face createFace(const std::vector<std::string> &face_values);
 }
 
 #endif

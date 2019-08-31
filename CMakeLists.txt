@@ -9,13 +9,14 @@ find_package(ZLIB REQUIRED)
 add_executable(objviewer 
     src/main.cpp
     src/Context.cpp
+    src/Face.cpp
     src/ObjParser.cpp
     src/ObjViewerState.cpp
     src/PixelBuffer.cpp
+    src/StringUtil.cpp
     src/Text.cpp
     src/Timer.cpp
     src/Vector3.cpp
-    src/Face.cpp
     src/VertexTexture.cpp
 )
 

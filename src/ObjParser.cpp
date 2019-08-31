@@ -24,24 +24,28 @@ namespace
         const auto key = results.front();
         results.erase(results.begin());
 
-        for (const auto &str: results)
-            std::cout << str << "\n";
-
         if (key == "#")
             return;
 
         if (key == "v")
+        {
             model.vectors.push_back(geometry::createVector(results));
+            return;
+        }
 
         if (key =="vt")
+        {
             model.vertex_textures.push_back(geometry::createVertexTexture(results));
+            return;
+        }
 
         if (key == "f")
         {
             model.faces.push_back(geometry::createFace(results));
+            return;
         }
 
-        std::cout << "Unsupport obj command\n";
+        std::cout << "Unsupported obj command\n";
     }
 }
 
