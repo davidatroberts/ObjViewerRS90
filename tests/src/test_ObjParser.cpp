@@ -136,6 +136,19 @@ TEST_CASE("ObjParserFaces", "[faces]")
         REQUIRE(face.vertex_indices == expected);
     }
 
+    SECTION("can read a face with 4 vertices")
+    {
+        std::string input_str("f 1 2 3 4");
+        std::istringstream iss(input_str);
+        const auto model = obj_parser::parserObjectStream(iss);
+        REQUIRE(model.faces.size() == 1);
+
+        const auto face = model.faces.front();
+        std::vector<size_t> expected = {0, 1, 2, 3};
+        
+        REQUIRE(face.vertex_indices == expected);
+    }
+
     SECTION("can read a face with 3 vertices and 3 vertex texture coordinates")
     {
         std::string input_str("f 1/3 2/2 3/1");
@@ -149,6 +162,22 @@ TEST_CASE("ObjParserFaces", "[faces]")
         REQUIRE(face.vertex_indices == expected_vertices);
 
         std::vector<size_t> expected_vertex_textures = {2, 1, 0};
+        REQUIRE(face.vertex_texture_indices == expected_vertex_textures);
+    }
+
+    SECTION("can read a face with 4 vertices and 4 vertex coordinates")
+    {
+        std::string input_str("f 1/4 2/3 3/2 4/1");
+        std::istringstream iss(input_str);
+        const auto model = obj_parser::parserObjectStream(iss);
+        REQUIRE(model.faces.size() == 1);
+
+        const auto face = model.faces.front();
+
+        std::vector<size_t> expected_vertices = {0, 1, 2, 3};
+        REQUIRE(face.vertex_indices == expected_vertices);
+
+        std::vector<size_t> expected_vertex_textures = {3, 2, 1, 0};
         REQUIRE(face.vertex_texture_indices == expected_vertex_textures);
     }
 }
