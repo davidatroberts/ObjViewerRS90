@@ -110,6 +110,22 @@ TEST_CASE("ObjParserVertexTexture", "[textures]")
     }
 }
 
+TEST_CASE("ObjParserVertexNormal", "[normal]")
+{
+    SECTION("can read a vertex normal with x,y,z")
+    {
+        std::string input_str("vn 0.2 0.4 0.5");
+        std::istringstream iss(input_str);
+        const auto model = obj_parser::parserObjectStream(iss);
+        REQUIRE(model.vertex_normals.size() == 1);
+
+        const auto v = model.vertex_normals.front();
+        CHECK(v.x == Approx(0.2));
+        CHECK(v.y == Approx(0.4));
+        CHECK(v.z == Approx(0.5));
+    }
+}
+
 TEST_CASE("ObjParserComments", "[comments]")
 {
     SECTION("can read and ignore comments")

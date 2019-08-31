@@ -28,5 +28,6 @@ target_link_libraries(unit_tests
 add_test(parse_comments unit_tests ObjParserComments)
 add_test(parse_vector unit_tests ObjParserVector)
 add_test(parse_texture unit_tests ObjParserVertexTexture)
+add_test(parse_normal unit_tests ObjParserVertexNormal)
 add_test(parse_faces unit_tests ObjParserFaces)
 add_test(string_split unit_tests StringUtilSplit)

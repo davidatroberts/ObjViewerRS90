@@ -33,9 +33,15 @@ namespace
             return;
         }
 
-        if (key =="vt")
+        if (key == "vt")
         {
             model.vertex_textures.push_back(geometry::createVertexTexture(results));
+            return;
+        }
+
+        if (key == "vn")
+        {
+            model.vertex_normals.push_back(geometry::createVector(results));
             return;
         }
 

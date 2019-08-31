@@ -13,6 +13,7 @@ namespace geometry
     {
         std::vector<Vector3> vectors;
         std::vector<VertexTexture> vertex_textures;
+        std::vector<Vector3> vertex_normals;
         std::vector<Face> faces;
     };
 }
