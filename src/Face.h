@@ -10,6 +10,7 @@ namespace geometry
     {
         std::vector<size_t> vertex_indices;
         std::vector<size_t> vertex_texture_indices;
+        std::vector<size_t> vertex_normal_indices;
     };
     
 

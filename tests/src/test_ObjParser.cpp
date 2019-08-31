@@ -196,4 +196,41 @@ TEST_CASE("ObjParserFaces", "[faces]")
         std::vector<size_t> expected_vertex_textures = {3, 2, 1, 0};
         REQUIRE(face.vertex_texture_indices == expected_vertex_textures);
     }
+
+    SECTION("can read a face with 3 vertices, 3 texture coordinates and 3 vertex normals")
+    {
+        std::string input_str("f 1/2/3 2/3/4 3/4/5");
+        std::istringstream iss(input_str);
+        const auto model = obj_parser::parserObjectStream(iss);
+        REQUIRE(model.faces.size() == 1);
+
+        const auto face = model.faces.front();
+
+        std::vector<size_t> expected_vertices = {0, 1, 2};
+        REQUIRE(face.vertex_indices == expected_vertices);
+
+        std::vector<size_t> expected_vertex_textures = {1, 2, 3};
+        REQUIRE(face.vertex_texture_indices == expected_vertex_textures);
+
+        std::vector<size_t> expected_vertex_normals = {2, 3, 4};
+        REQUIRE(face.vertex_normal_indices == expected_vertex_normals);
+    }
+
+    SECTION("can read a face with 3 vertices and 3 vertex normals")
+    {
+        std::string input_str("f 1//3 2//4 3//5");
+        std::istringstream iss(input_str);
+        const auto model = obj_parser::parserObjectStream(iss);
+        REQUIRE(model.faces.size() == 1);
+
+        const auto face = model.faces.front();
+
+        std::vector<size_t> expected_vertices = {0, 1, 2};
+        REQUIRE(face.vertex_indices == expected_vertices);
+
+        REQUIRE(face.vertex_texture_indices.empty());
+
+        std::vector<size_t> expected_vertex_normals = {2, 3, 4};
+        REQUIRE(face.vertex_normal_indices == expected_vertex_normals);
+    }
 }
