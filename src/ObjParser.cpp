@@ -51,7 +51,6 @@ namespace
             return true;
         }
 
-        std::cout << "Unsupported obj command\n";
         return false;
     }
 }
