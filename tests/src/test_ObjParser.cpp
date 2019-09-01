@@ -234,3 +234,50 @@ TEST_CASE("ObjParserFaces", "[faces]")
         REQUIRE(face.vertex_normal_indices == expected_vertex_normals);
     }
 }
+
+TEST_CASE("ObjParserIntegration", "[integration]")
+{
+    SECTION("can parse a cube")
+    {
+        std::string input_str = ""
+            "# cube.obj\n"
+            "#\n"
+            "\n"
+            "g cube\n"
+            "\n"
+            "v  0.0  0.0  0.0\n"
+            "v  0.0  0.0  1.0\n"
+            "v  0.0  1.0  0.0\n"
+            "v  0.0  1.0  1.0\n"
+            "v  1.0  0.0  0.0\n"
+            "v  1.0  0.0  1.0\n"
+            "v  1.0  1.0  0.0\n"
+            "v  1.0  1.0  1.0\n"
+            "\n"
+            "vn  0.0  0.0  1.0\n"
+            "vn  0.0  0.0 -1.0\n"
+            "vn  0.0  1.0  0.0\n"
+            "vn  0.0 -1.0  0.0\n"
+            "vn  1.0  0.0  0.0\n"
+            "vn -1.0  0.0  0.0\n"
+            "\n"
+            "f  1//2  7//2  5//2\n"
+            "f  1//2  3//2  7//2\n" 
+            "f  1//6  4//6  3//6\n" 
+            "f  1//6  2//6  4//6\n" 
+            "f  3//3  8//3  7//3\n" 
+            "f  3//3  4//3  8//3\n" 
+            "f  5//5  7//5  8//5\n" 
+            "f  5//5  8//5  6//5\n" 
+            "f  1//4  5//4  6//4\n" 
+            "f  1//4  6//4  2//4\n" 
+            "f  2//1  6//1  8//1\n" 
+            "f  2//1  8//1  4//1\n";
+        std::stringstream iss(input_str);
+        const auto model = obj_parser::parserObjectStream(iss);
+
+        REQUIRE(model.vectors.size() == 8);
+        REQUIRE(model.vertex_normals.size() == 6);
+        REQUIRE(model.faces.size() == 12);
+    }
+}

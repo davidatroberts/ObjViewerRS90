@@ -51,6 +51,13 @@ namespace
             return true;
         }
 
+        // todo implement these
+        if (key == "g")
+            return true;
+
+        if (key == "s")
+            return true;
+
         return false;
     }
 }
