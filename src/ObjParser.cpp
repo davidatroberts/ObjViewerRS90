@@ -10,7 +10,7 @@
 
 namespace 
 {
-    void processLine(const std::string &line, geometry::Model &model)
+    bool processLine(const std::string &line, geometry::Model &model)
     {
         std::istringstream iss(line);
         std::vector<std::string> results(
@@ -19,39 +19,40 @@ namespace
         );
 
         if (results.empty())
-            return;
+            return true;
 
         const auto key = results.front();
         results.erase(results.begin());
 
         if (key == "#")
-            return;
+            return true;
 
         if (key == "v")
         {
             model.vectors.push_back(geometry::createVector(results));
-            return;
+            return true;
         }
 
         if (key == "vt")
         {
             model.vertex_textures.push_back(geometry::createVertexTexture(results));
-            return;
+            return true;
         }
 
         if (key == "vn")
         {
             model.vertex_normals.push_back(geometry::createVector(results));
-            return;
+            return true;
         }
 
         if (key == "f")
         {
             model.faces.push_back(geometry::createFace(results));
-            return;
+            return true;
         }
 
         std::cout << "Unsupported obj command\n";
+        return false;
     }
 }
 
@@ -70,7 +71,8 @@ namespace obj_parser
         std::string line;
         while (std::getline(stream, line))
         {
-            processLine(line, model);
+            if (!processLine(line, model))
+                std::cout << "Unable to parse: " << line << "\n";
         }
         
         return model;
